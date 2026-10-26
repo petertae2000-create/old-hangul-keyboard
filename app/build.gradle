@@ -1,0 +1,29 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'kr.tftop.oldhangulkb'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'kr.tftop.oldhangulkb'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+    signingConfigs {
+        fixed {
+            storeFile file('../keystore/oldhangul.jks')
+            storePassword 'oldhangul'
+            keyAlias 'oldhangul'
+            keyPassword 'oldhangul'
+        }
+    }
+    buildTypes {
+        release { minifyEnabled false; signingConfig signingConfigs.fixed }
+        debug { signingConfig signingConfigs.fixed }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    aaptOptions { noCompress 'otf' }
+}
